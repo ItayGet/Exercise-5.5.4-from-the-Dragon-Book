@@ -1,5 +1,7 @@
-class Program {
-	public static void Main (string[] args) {
-		Console.WriteLine ("Hello World");
+namespace Parsing {
+	class Program {
+		public static void Main (string[] args) {
+			Console.WriteLine ("Hello World");
+		}
 	}
 }
