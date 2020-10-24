@@ -20,7 +20,8 @@ namespace Parsing {
 					currChar = null;
 				} else if(currSym is Nonterminal) {
 					var nt = currSym as Nonterminal;
-					stack.Push(nt.SynAttrs);
+					nt.Sa.Nt = nt;
+					stack.Push(nt.Sa);
 
 					nt.PrepareRow();
 					foreach(var s in nt.Row[currChar.C]) {

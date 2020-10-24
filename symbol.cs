@@ -17,12 +17,16 @@ namespace Parsing {
 		public virtual void Run(Stack<Symbol> s) {}
 	}
 
+	public abstract class SynAttrs : Action {
+		public Nonterminal Nt { get; set; }
+	}
+
 	public abstract class Nonterminal : Symbol {
 		public ParseRow Row { get; set; }
         public abstract void PrepareRow();
 		
 		// Synthesized attributes of nonterminal
-		public Action SynAttrs { get; set; }
+		public SynAttrs Sa { get; set; }
 	}
 
 	public class Terminal : Symbol {
