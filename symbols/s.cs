@@ -5,24 +5,28 @@ namespace Parsing {
 	
 	public class S : Nonterminal {
 		public S(SynS synS) {
-			Row = new ParseRow() {
-			{'i', new Stack<Symbol>(new Symbol[] {
-				new Terminal('i'),
-				new Terminal('('),
-				new C(new SSynnC()),
-				new Terminal(')'),
-				new S(new SSynS_1()), // S_1
-				new Terminal('e'),
-				new S(new SSynS_2()), // S_2
-			})},
-			{'s', new Stack<Symbol>(new[] {
-				new Terminal('s'),
-			})},
-		};
 			SynAttrs = synS;
 		}
 
-		public Label Next { get; set; }
+        public override void PrepareRow()
+        {
+            Row = new ParseRow() {
+                {'i', new Stack<Symbol>(new Symbol[] {
+                    new Terminal('i'),
+                    new Terminal('('),
+                    new C(new SSynnC()),
+                    new Terminal(')'),
+                    new S(new SSynS_1()), // S_1
+		    new Terminal('e'),
+                    new S(new SSynS_2()), // S_2
+			    })},
+                {'s', new Stack<Symbol>(new[] {
+                    new Terminal('s'),
+                })},
+            };
+        }
+
+        public Label Next { get; set; }
 
 		// Synthesized attributes for S
 		public class SynS : Action {	

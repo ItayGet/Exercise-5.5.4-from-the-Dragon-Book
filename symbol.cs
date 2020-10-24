@@ -19,6 +19,7 @@ namespace Parsing {
 
 	public abstract class Nonterminal : Symbol {
 		public ParseRow Row { get; set; }
+        public abstract void PrepareRow();
 		
 		// Synthesized attributes of nonterminal
 		public Action SynAttrs { get; set; }

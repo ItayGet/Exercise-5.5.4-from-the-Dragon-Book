@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 
 namespace Parsing {
-	using ParseTable = Dictionary<Nonterminal, Dictionary<char, Stack<Symbol>>>;
 
 	public static class LLParser {
 		public static void Parse(Queue<Terminal> inp, Stack<Symbol> stack) {
-			var currChar = inp.Dequeue();
-			while(inp.Count != 0) {
+			for(Terminal currChar = null; !(stack.Count == 1 && stack.Peek() is S.SynS);) {
+				if(currChar == null) {
+				    currChar = inp.Dequeue();
+				}
 				var currSym = stack.Pop();
 				if(currSym is Terminal) {
 					var terminal = currSym as Terminal;
@@ -16,11 +17,12 @@ namespace Parsing {
 					}
 
 					//Next char
-					currChar = inp.Dequeue();
+					currChar = null;
 				} else if(currSym is Nonterminal) {
 					var nt = currSym as Nonterminal;
 					stack.Push(nt.SynAttrs);
-					
+
+					nt.PrepareRow();
 					foreach(var s in nt.Row[currChar.C]) {
 						stack.Push(s);
 					}
