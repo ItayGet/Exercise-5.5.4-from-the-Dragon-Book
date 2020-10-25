@@ -5,7 +5,7 @@ namespace Parsing.Symbols {
 	using ParseEntry = KeyValuePair<char, Stack<Symbol>>;
 
     public partial class S : Nonterminal {
-        class IfElse : Deriviation {
+        class IfElse : Derivation {
             public IfElse() {
                 Entries = new ParseEntry[] { new ParseEntry('i', new Stack<Symbol>(new Symbol[] {
                     new Terminal('i'),

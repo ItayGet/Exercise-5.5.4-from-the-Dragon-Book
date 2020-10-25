@@ -8,7 +8,7 @@ namespace Parsing.Symbols {
 		}
 
 		public override void PrepareRow() {
-			PrepareRowParams(new Deriviation[] { new Plain() });
+			PrepareRowParams(new Derivation[] { new Plain() });
 		}
 
         public Label True { get; set; }

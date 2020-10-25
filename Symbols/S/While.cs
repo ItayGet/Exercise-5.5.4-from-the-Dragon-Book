@@ -5,7 +5,7 @@ namespace Parsing.Symbols {
 	using ParseEntry = KeyValuePair<char, Stack<Symbol>>;
 
     public partial class S : Nonterminal {
-        class While : Deriviation {
+        class While : Derivation {
             public While() {
                 Entries = new ParseEntry[] { new ParseEntry('w', new Stack<Symbol>(new Symbol[] {
 					new Terminal('w'),

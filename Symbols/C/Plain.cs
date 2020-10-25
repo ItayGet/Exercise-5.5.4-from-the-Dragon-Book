@@ -5,7 +5,7 @@ namespace Parsing.Symbols {
 	using ParseEntry = KeyValuePair<char, Stack<Symbol>>;
 
     public partial class C {
-        class Plain : Deriviation {
+        class Plain : Derivation {
             public Plain() {
                 Entries = new ParseEntry[] { new ParseEntry('c', new Stack<Symbol>(new Symbol[] {
                     new Terminal('c'),

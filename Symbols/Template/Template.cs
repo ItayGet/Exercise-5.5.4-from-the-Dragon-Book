@@ -11,7 +11,7 @@ namespace Parsing.Symbols {
 		}
 
         public override void PrepareRow() {
-			PrepareRowParams(new Deriviation[] { /* All Nonterminal Deriviations, eg. Template.Deriviation */ });
+			PrepareRowParams(new Derivation[] { /* All Nonterminal Derivations, eg. new TemplateDerivation() */ });
 		}
 
 		// Inherited Attributes

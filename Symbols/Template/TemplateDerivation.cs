@@ -1,5 +1,5 @@
-﻿// This is a template for a symbol deriviation. It is should not be compiled
-// It should be used to copy when one wants to create a new symbol deriviation
+﻿// This is a template for a symbol derivation. It is should not be compiled
+// It should be used to copy when one wants to create a new symbol derivation
 #if false
 using System.Linq;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ namespace Parsing.Symbols {
 	using ParseEntry = KeyValuePair<char, Stack<Symbol>>;
 
     public partial class Template : Nonterminal {
-        class TemplateDerivation : Deriviation {
+        class TemplateDerivation : Derivation {
             public TemplateDerivation() {
                 Entries = new ParseEntry[] { new ParseEntry(/* Character to match */, new Stack<Symbol>(new Symbol[] {
                     // Place your derivation here. This supports Terminals, Nonterminals, and Actions

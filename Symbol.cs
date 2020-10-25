@@ -23,8 +23,8 @@ namespace Parsing {
 	public abstract class Nonterminal : Symbol {
 		public ParseRow Row { get; set; }
         public abstract void PrepareRow();
-		protected void PrepareRowParams(Deriviation[] deriviations) {
-			foreach(var der in deriviations) {
+		protected void PrepareRowParams(Derivation[] derivations) {
+			foreach(var der in derivations) {
 				foreach(var entry in der.Entries) {
                     Row.Add(entry.Key, entry.Value);
                 }
