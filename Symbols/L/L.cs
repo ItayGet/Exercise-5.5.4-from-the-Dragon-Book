@@ -1,14 +1,14 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 
 namespace Parsing.Symbols {
-	public partial class S : Nonterminal {
-		public S(Syn syn) {
+	public partial class L : Nonterminal {
+		public L(Syn syn) {
 			Sa = syn;
 		}
 
         public override void PrepareRow() {
-			PrepareRowParams(new Derivation[] { new Plain(), new IfElse(), new While(), new DoWhile(), new Block() });
+			PrepareRowParams(new Derivation[] { new Statements(), new Epsilon() });
 		}
 
         public Label Next { get; set; }

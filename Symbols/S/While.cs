@@ -25,7 +25,7 @@ namespace Parsing.Symbols {
 
                     action_2.CCode = Code;
                 }
-            }
+           }
 
             public class SynS_1 : Syn {
                 public override void Run(Stack<Symbol> s) {
