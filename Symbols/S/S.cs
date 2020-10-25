@@ -2,8 +2,6 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace Parsing.Symbols {
-	using ParseRow = Dictionary<char, Stack<Symbol>>;
-	
 	public partial class S : Nonterminal {
 		public S(Syn syn) {
 			Sa = syn;
@@ -18,7 +16,5 @@ namespace Parsing.Symbols {
 		public class Syn : SynAttrs {	
 			public string Code { get; set; }
 		}
-
-		
 	}
 }

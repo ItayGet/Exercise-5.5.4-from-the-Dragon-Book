@@ -17,8 +17,5 @@ namespace Parsing.Symbols {
 		public class Syn : SynAttrs {
 			public string Code { get; set; }
 		}
-
-		
-
 	}
 }
