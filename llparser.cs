@@ -5,30 +5,24 @@ namespace Parsing {
 
 	public static class LLParser {
 		public static void Parse(Queue<Terminal> inp, Stack<Symbol> stack) {
-			for(Terminal currChar = null; !(stack.Count == 1 && stack.Peek() is S.SynS);) {
-				if(currChar == null) {
-				    currChar = inp.Dequeue();
-				}
+			while(!(stack.Count == 1 && stack.Peek() is S.SynS)) {
 				var currSym = stack.Pop();
-				if(currSym is Terminal) {
-					var terminal = currSym as Terminal;
+				if(currSym is Terminal terminal) {
+					var currChar = inp.Dequeue();
 					if(currChar.C != terminal.C) {
 						throw new Exception($"Syntax Error: expected '{terminal.C}' but got '{currChar.C}'");
 					}
-
-					//Next char
-					currChar = null;
-				} else if(currSym is Nonterminal) {
-					var nt = currSym as Nonterminal;
-					nt.Sa.Nt = nt;
-					stack.Push(nt.Sa);
-
+				} else if(currSym is Nonterminal nt) {
 					nt.PrepareRow();
-					foreach(var s in nt.Row[currChar.C]) {
+					foreach(var s in nt.Row[inp.Peek().C]) {
+						if (s is Nonterminal snt) {
+							snt.Sa.Nt = snt;
+							stack.Push(snt.Sa);
+						}
 						stack.Push(s);
 					}
-				} else if(currSym is Action) {
-					(currSym as Action).Run(stack);
+				} else if(currSym is Action action) {
+					action.Run(stack);
 				} else {
 					//Error
 				}

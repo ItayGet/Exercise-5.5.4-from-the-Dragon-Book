@@ -9,8 +9,7 @@ namespace Parsing {
 			Sa = synC;
 		}
 
-		public override void PrepareRow()
-		{
+		public override void PrepareRow() {
 			Row = new ParseRow() {
 				{'c', new Stack<Symbol>(new Symbol[] {
 					new Terminal('c'),
@@ -28,10 +27,10 @@ namespace Parsing {
 
 		public class Action_1 : Action {
 			public override void Run(Stack<Symbol> s) {
-				var synC = s.ElementAt(1) as SynC;
+				var synC = s.ElementAt(0) as SynC;
 				var c = synC.Nt as C;
 
-				synC.Code = $"cmp 1, 0\njne {c.False.L}\n jmp {c.True.L}\n";
+				synC.Code = $"cmp 1, 0\njne {c.False.L}\njmp {c.True.L}\n";
 			}
 		}
 

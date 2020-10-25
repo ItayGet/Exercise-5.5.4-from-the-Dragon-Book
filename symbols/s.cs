@@ -9,8 +9,7 @@ namespace Parsing {
 			Sa = synS;
 		}
 
-        public override void PrepareRow()
-        {
+        public override void PrepareRow() {
             Row = new ParseRow() {
                 {'i', new Stack<Symbol>(new Symbol[] {
                     new Terminal('i'),
@@ -39,7 +38,7 @@ namespace Parsing {
 
 		public class SynC : C.SynC {
 			public override void Run(Stack<Symbol> s) {
-				var action_2 = s.ElementAt(7) as Action_2;
+				var action_2 = s.ElementAt(6) as Action_2;
 
 				action_2.CCode = Code;
 			}
@@ -47,7 +46,7 @@ namespace Parsing {
 
 		public class SynS_1 : SynS {
 			public override void Run(Stack<Symbol> s) {
-				var action_2 = s.ElementAt(4) as Action_2;
+				var action_2 = s.ElementAt(3) as Action_2;
 
 				action_2.S_1Code = Code;
 			}
@@ -55,7 +54,7 @@ namespace Parsing {
 
 		public class SynS_2 : SynS {
 			public override void Run(Stack<Symbol> s) {
-				var action_2 = s.ElementAt(1) as Action_2;
+				var action_2 = s.ElementAt(0) as Action_2;
 
 				action_2.S_2Code = Code;
 			}
@@ -63,11 +62,11 @@ namespace Parsing {
 
 		public class Action_1 : Action {
 			public override void Run(Stack<Symbol> s) {
-				var c = s.ElementAt(1) as C;
-				var s_1 = s.ElementAt(4) as S;
-				var s_2 = s.ElementAt(7) as S;
-				var action_2 = s.ElementAt(9) as Action_2;
-				var synS = s.ElementAt(10) as SynS;
+				var c = s.ElementAt(0) as C;
+				var s_1 = s.ElementAt(3) as S;
+				var s_2 = s.ElementAt(6) as S;
+				var action_2 = s.ElementAt(8) as Action_2;
+				var synS = s.ElementAt(9) as SynS;
 				var s_0 = synS.Nt as S;
 
 				c.True = new Label();
@@ -89,15 +88,15 @@ namespace Parsing {
 			public string CCode { get; set; } 
 
 			public override void Run(Stack<Symbol> s) {
-				var synS = s.ElementAt(1) as SynS;
+				var synS = s.ElementAt(0) as SynS;
 
-				synS.Code = $"{CCode}{l1.L}:\n{S_1Code}{l2.L}:\n{S_2Code}";
+				synS.Code = $"{CCode}{l1.L}:\n{S_1Code}{l2.L}:\n{S_2Code}\n";
 			}
 		}
 
 		public class Action_3 : Action {
 			public override void Run(Stack<Symbol> s) {
-				var synS = s.ElementAt(1) as SynS;
+				var synS = s.ElementAt(0) as SynS;
 				var s_0 = synS.Nt as S;
 
 				synS.Code = $"//statement\ngoto {s_0.Next.L}\n";
