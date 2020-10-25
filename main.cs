@@ -11,7 +11,7 @@ namespace Parsing {
 			var stack = new Stack<Symbol>(new Symbol[] {s.Sa, s});
 
 			LLParser.Parse(
-				Symbol.StringToTerminalQueue("i(c)i(c)seses"),
+				Symbol.StringToTerminalQueue("dsw(c)"),
 			 	stack
 			);
 			Console.WriteLine((stack.Peek() as S.SynS).Code);

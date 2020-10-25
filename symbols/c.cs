@@ -13,7 +13,7 @@ namespace Parsing {
 			Row = new ParseRow() {
 				{'c', new Stack<Symbol>(new Symbol[] {
 					new Terminal('c'),
-					new Action_1()
+					new ActionC_1()
 				})},
 			};
 		}
@@ -25,7 +25,7 @@ namespace Parsing {
 			public string Code { get; set; }
 		}
 
-		public class Action_1 : Action {
+		public class ActionC_1 : Action {
 			public override void Run(Stack<Symbol> s) {
 				var synC = s.ElementAt(0) as SynC;
 				var c = synC.Nt as C;
