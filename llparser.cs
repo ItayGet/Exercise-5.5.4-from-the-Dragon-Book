@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 
+using Parsing.Symbols;
+
 namespace Parsing {
 
 	public static class LLParser {
 		public static void Parse(Queue<Terminal> inp, Stack<Symbol> stack) {
-			while(!(stack.Count == 1 && stack.Peek() is S.SynS)) {
+			while(!(stack.Count == 1 && stack.Peek() is S.Syn)) {
 				var currSym = stack.Pop();
 				if(currSym is Terminal terminal) {
 					var currChar = inp.Dequeue();

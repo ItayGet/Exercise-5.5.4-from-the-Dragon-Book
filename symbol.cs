@@ -2,7 +2,6 @@ using System.Collections.Generic;
 
 namespace Parsing {
 	using ParseRow = Dictionary<char, Stack<Symbol>>;
-
 	public abstract class Symbol {
 		public static Queue<Terminal> StringToTerminalQueue(string str) {
 			var q = new Queue<Terminal>();
@@ -24,6 +23,15 @@ namespace Parsing {
 	public abstract class Nonterminal : Symbol {
 		public ParseRow Row { get; set; }
         public abstract void PrepareRow();
+		protected void PrepareRowParams(Deriviation[] deriviations) {
+			foreach(var der in deriviations) {
+				foreach(var entry in der.Entries) {
+                    Row.Add(entry.Key, entry.Value);
+                }
+			}
+		}
+
+		public Nonterminal() { Row = new ParseRow();  }
 		
 		// Synthesized attributes of nonterminal
 		public SynAttrs Sa { get; set; }

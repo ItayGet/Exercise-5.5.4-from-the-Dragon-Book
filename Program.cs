@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 
+using Parsing.Symbols;
+
 namespace Parsing {
 	class Program {
 		public static void Main (string[] args) {
 			// Simulating a real stack
-			var s = new S(new S.SynS());
+			var s = new S(new S.Syn());
 			s.Next = new Label();
 			s.Sa.Nt = s;
 			var stack = new Stack<Symbol>(new Symbol[] {s.Sa, s});
@@ -14,7 +16,7 @@ namespace Parsing {
 				Symbol.StringToTerminalQueue("w(c)s"),
 			 	stack
 			);
-			Console.WriteLine((stack.Peek() as S.SynS).Code);
+			Console.WriteLine((stack.Peek() as S.Syn).Code);
 		}
 	}
 }
