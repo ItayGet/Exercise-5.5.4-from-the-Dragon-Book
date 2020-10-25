@@ -37,15 +37,15 @@ namespace Parsing {
 					new Terminal(')'),
 					new Action_D2(),
 				})},
-				/*{'w', new Stack<Symbol>(new Symbol[] {
+				{'w', new Stack<Symbol>(new Symbol[] {
 					new Terminal('w'),
 					new Terminal('('),
 					new Action_W1(),
-					new C(SynWC_1()),
+					new C(new SynWC_1()),
 					new Terminal(')'),
-					new S(SynWS_1()),
+					new S(new SynWS_1()),
 					new Action_W2(),
-				})}*/
+				})}
 			};
         }
 
@@ -78,6 +78,7 @@ namespace Parsing {
 				action_2.S_2Code = Code;
 			}
 		}
+
 		public class SynDS_1 : SynS {
 			public override void Run(Stack<Symbol> s) {
 				var action_2 = s.ElementAt(5) as Action_D2;
@@ -85,11 +86,28 @@ namespace Parsing {
 				action_2.S_1Code = Code;
 			}
 		}
+
 		public class SynDC_1 : C.SynC {
 			public override void Run(Stack<Symbol> s) {
 				var action_2 = s.ElementAt(1) as Action_D2;
 
 				action_2.CCode = Code;
+			}
+		}
+
+		public class SynWC_1 : C.SynC {
+			public override void Run(Stack<Symbol> s) {
+				var action_2 = s.ElementAt(3) as Action_W2;
+
+				action_2.CCode = Code;
+			}
+		}
+
+		public class SynWS_1 : SynS {
+			public override void Run(Stack<Symbol> s) {
+				var action_2 = s.ElementAt(0) as Action_W2;
+
+				action_2.S_1Code = Code;
 			}
 		}
 
@@ -161,6 +179,33 @@ namespace Parsing {
             public override void Run(Stack<Symbol> s) {
 				var synS = s.ElementAt(0) as SynS;
 				synS.Code = $"{L1.L}:\n{S_1Code}{L2.L}:\n{CCode}\n";
+			}
+		}
+        public class Action_W1 : Action {
+            public override void Run(Stack<Symbol> s) {
+				var c = s.ElementAt(0) as C;
+				var s_1 = s.ElementAt(3) as S;
+				var action_2 = s.ElementAt(5) as Action_W2;
+				var synS = s.ElementAt(6) as SynS;
+				var s_0 = synS.Nt as S;
+
+				action_2.L1 = new Label();
+				action_2.L2 = new Label();
+
+				c.True = action_2.L2;
+				c.False = s_0.Next;
+
+				s_1.Next = action_2.L1; 
+			}
+		}
+		public class Action_W2 : Action {
+			public Label L1 { get; set; }
+			public Label L2 { get; set; }
+			public string S_1Code { get; set; }
+			public string CCode { get; set; }
+			public override void Run(Stack<Symbol> s) {
+				var synS = s.ElementAt(0) as SynS;
+				synS.Code = $"{L1.L}:\n{CCode}{L2.L}:\n{S_1Code}\n";
 			}
 		}
 	}
