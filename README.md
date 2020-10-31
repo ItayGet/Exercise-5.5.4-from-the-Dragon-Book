@@ -16,6 +16,7 @@ There are 4 types of symbols available for the design of the table:
 * If-else statement
 * While loop
 * Do-while loop
+* Block statements
 
 ## Notes
 * Lexing is not done at all. Instead, each terminal contains a single character.
